@@ -7,7 +7,7 @@ int main() {
 
 	Menu menu;
 
-	menu.mostrar();
+	menu.MostrarEntrada();
 
 	system("pause");
   

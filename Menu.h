@@ -12,6 +12,10 @@ class Menu
 {
 public:
 
+	// MOSTRAR ENTRADA AL SISTEMA (NIVEL 0)
+
+	void MostrarEntrada();
+
 	// MOSTRAR MENU PRINCIPAL (NIVEL 1)
 	void mostrar();
 

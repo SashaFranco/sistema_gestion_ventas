@@ -1,6 +1,49 @@
 #include "Menu.h"
 
 
+void Menu::MostrarEntrada()
+{
+    while (true)
+    {
+        system("cls");
+        int opcion;
+        cout << left;
+        cout << "***********************" << endl;
+        cout << "** " << _fechaSitema.toString() << " - " << _fechaSitema.getNombreDia() << " **" << endl;
+        cout << "***********************" << endl << endl;
+        cout << setw(40) << "SISTEMA DE GESTION PARA LA VENTA DE HERRAJES" << endl;
+        cout << setw(40) << "--------------------------------------------" << endl;
+        cout << setw(40) << "-----------------BIENVENDIO-----------------" << endl;
+        cout << setw(40) << "--------------------------------------------" << endl;
+        // Opciones del menú inicial
+        cout << setw(40) << "1. ENTRAR AL SISTEMA" << endl;
+        cout << setw(40) << "2. CREDITOS" << endl;
+        cout << setw(40) << "0. SALIR" << endl;
+        setConsoleSize(45, 45);
+
+        cin >> opcion;
+
+        switch (opcion)
+        {
+        case 1:
+            mostrar();
+            break;
+        case 2:
+            cout << endl;
+            cout << "Sasha Emanuel Franco" << endl;
+            system("pause");
+            break;
+        case 0:
+            return;
+            break;
+        default: "OPCION INCORRECTA, ELIJA DE NUEVO";
+            system("pause");
+            break;
+        }
+    }
+    
+}
+
 void Menu::mostrar()
 {
     while (true)
@@ -23,7 +66,7 @@ void Menu::mostrar()
         cout << setw(40) << "5. GRESTION DE USUARIOS" << endl;
         cout << setw(40) << "6. BACKUP DE ARCHIVOS" << endl;
         cout << setw(40) << "--------------------------------------------" << endl;
-        cout << setw(40) << "0. SALIR" << endl;
+        cout << setw(40) << "0. VOLVER" << endl;
         setConsoleSize(45, 45);
         cin >> opc;
 
