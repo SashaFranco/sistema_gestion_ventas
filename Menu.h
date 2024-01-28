@@ -2,10 +2,13 @@
 #include <iostream>
 #include <cstring>
 #include <iomanip>
-#include "Helpers.h"
 
 using namespace std;
+
+#include "Helpers.h"
 #include "Fecha.h"
+#include "Manager.h"
+
 
 
 class Menu
@@ -29,7 +32,7 @@ public:
 
 private:
 	Fecha _fechaSitema;
-	
+	Manager _manager;
 
 };
 

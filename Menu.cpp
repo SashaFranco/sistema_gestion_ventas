@@ -290,8 +290,10 @@ void Menu::mostrarUsuarios()
         switch (opc)
         {
         case 1:
+            _manager.listarUsuarios();
             break;
         case 2:
+            _manager.AltaUsuarios();
             break;
         case 3:
             break;

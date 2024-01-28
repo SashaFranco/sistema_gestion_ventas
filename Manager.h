@@ -1,7 +1,7 @@
 #pragma once
 
 // Esta clase gestionara todos los objetos del programa
-// para interactuar con ArchivosManager.h
+// para interactuar con ArchivosManager.h y el Menu.h
 
 #include <iostream>
 #include <iomanip>
@@ -14,7 +14,11 @@ public:
 
 	// METODOS PARA GESTIONAR USUARIOS
 	void MostrarEncabezadoUsuario();
+	bool entradaAlSistema();
+	void setUsuarios(Usuarios usuario);
 
+	void AltaUsuarios();
+	void listarUsuarios();
 
 private:
 
