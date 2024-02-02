@@ -26,6 +26,10 @@ void Menu::MostrarEntrada()
         switch (opcion)
         {
         case 1:
+            /*if (_manager.entradaAlSistema())
+            {
+                mostrar();
+            }*/
             mostrar();
             break;
         case 2:
@@ -296,8 +300,10 @@ void Menu::mostrarUsuarios()
             _manager.AltaUsuarios();
             break;
         case 3:
+            _manager.MoidificarUsuarios();
             break;
         case 4:
+            _manager.BajaUsuario();
             break;
         case 0:
             return;

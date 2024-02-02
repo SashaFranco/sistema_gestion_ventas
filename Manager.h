@@ -7,6 +7,7 @@
 #include <iomanip>
 #include "ArchivosManager.h"
 #include "Usuarios.h"
+#include "Helpers.h"
 
 class Manager
 {
@@ -15,10 +16,13 @@ public:
 	// METODOS PARA GESTIONAR USUARIOS
 	void MostrarEncabezadoUsuario();
 	bool entradaAlSistema();
-	void setUsuarios(Usuarios usuario);
-
 	void AltaUsuarios();
+	void BajaUsuario();
+	void MoidificarUsuarios();
 	void listarUsuarios();
+
+	// SETTERS
+	void setUsuarios(Usuarios usuario);
 
 private:
 

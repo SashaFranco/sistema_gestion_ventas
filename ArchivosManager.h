@@ -15,10 +15,10 @@ public:
 	int ObtenerUltimoId() const;
 	Usuarios BuscarUsuario(const char* usuario, const char* passw) const;
 	bool AltaUsuario(Usuarios reg);
+	bool BajaUsuario(int id);
+	bool ModificarUsuario(int id, const char* nuevoUsuario, const char* nuevaPassw);
 	bool ListarUsuarios(Usuarios reg);
-
-	/*void BajaUsuario();
-	void ModificarUsuario();*/
+	
 
 private:
 	char _nombreArchivo[30];
