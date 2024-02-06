@@ -140,21 +140,25 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="ArchivosManager.cpp" />
+    <ClCompile Include="Cliente.cpp" />
     <ClCompile Include="Fecha.cpp" />
     <ClCompile Include="Helpers.cpp" />
     <ClCompile Include="Manager.cpp" />
     <ClCompile Include="Menu.cpp" />
     <ClCompile Include="Persona.cpp" />
+    <ClCompile Include="Proveedor.cpp" />
     <ClCompile Include="Source.cpp" />
     <ClCompile Include="Usuarios.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="ArchivosManager.h" />
+    <ClInclude Include="Cliente.h" />
     <ClInclude Include="Fecha.h" />
     <ClInclude Include="Helpers.h" />
     <ClInclude Include="Manager.h" />
     <ClInclude Include="Menu.h" />
     <ClInclude Include="Persona.h" />
+    <ClInclude Include="Proveedor.h" />
     <ClInclude Include="Usuarios.h" />
   </ItemGroup>
   <ItemGroup>

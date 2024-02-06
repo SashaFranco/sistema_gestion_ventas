@@ -67,7 +67,7 @@ void Menu::mostrar()
         cout << setw(40) << "2. REALIZAR VENTA" << endl;
         cout << setw(40) << "3. ABM" << endl;
         cout << setw(40) << "4. EMITIR REPORTES" << endl;
-        cout << setw(40) << "5. GRESTION DE USUARIOS" << endl;
+        cout << setw(40) << "5. GRESTION DE USUARIOS" << endl; //terminado
         cout << setw(40) << "6. BACKUP DE ARCHIVOS" << endl;
         cout << setw(40) << "--------------------------------------------" << endl;
         cout << setw(40) << "0. VOLVER" << endl;
