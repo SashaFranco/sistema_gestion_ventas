@@ -7,6 +7,8 @@
 #include <iomanip>
 #include "ArchivosManager.h"
 #include "Usuarios.h"
+#include "Cliente.h"
+#include "Proveedor.h"
 #include "Helpers.h"
 
 class Manager
@@ -29,5 +31,6 @@ private:
 	// INSTANCIAS PARA GESTIONAR USUARIOS
 	ArchivosManager _reg = ArchivosManager("Usuarios.dat");
 	Usuarios _usuarios;
+	
 };
 

@@ -8,7 +8,8 @@ using namespace std;
 #include "Helpers.h"
 #include "Fecha.h"
 #include "Manager.h"
-
+#include "Cliente.h"
+#include "Proveedor.h"
 
 
 class Menu
@@ -33,6 +34,7 @@ public:
 private:
 	Fecha _fechaSitema;
 	Manager _manager;
-
+	Cliente _cliente;
+	Proveedor _proveedor;
 };
 

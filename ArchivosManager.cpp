@@ -1,5 +1,7 @@
 #include "ArchivosManager.h"
 #include "Usuarios.h"
+#include "Cliente.h"
+#include "Proveedor.h"
 
 ArchivosManager::ArchivosManager(const char* n){
 	strcpy_s(_nombreArchivo, n);
@@ -121,4 +123,167 @@ bool ArchivosManager::ListarUsuarios(Usuarios reg)
             reg.Mostar();
         }
     }
+}
+
+
+int ArchivosManager::ObtenerUltimoIdCliente() const
+{
+    FILE* p = fopen(_nombreArchivo, "rb");
+    if (p == nullptr) return -1;
+
+    // se para en el principio del utimo registro
+    fseek(p, sizeof(Cliente), SEEK_END);
+
+    Cliente reg;
+    if (fread(&reg, sizeof(Cliente), 1, p) != 1) {
+        fclose(p);
+        return -1;
+    }
+
+    fclose(p);
+    return reg.getId();
+}
+bool ArchivosManager::AltaCliente(Cliente reg)
+{
+    FILE* p = fopen(_nombreArchivo, "ab");
+    if (p == nullptr)
+    {
+        return false;
+    }
+
+    bool escribio = fwrite(&reg, sizeof(Cliente), 1, p);
+    fclose(p);
+    return escribio;
+}
+bool ArchivosManager::BajaCliente(int id)
+{
+    int pos = BuscarClienteXID(id);
+    if (pos == -1)
+    {
+        cout << "NO SE ENCONTRO REGISTRO" << endl;
+        return false;
+    }
+    Cliente reg = BuscarCliente(id);
+    reg.Mostrar();
+    char opc;
+    cout << "desea borrar el registro? (S/N)" << endl;
+    cin >> opc;
+    if (opc == 's' || opc == 'S')
+    {
+        reg.setEstado(false);
+        bool quePaso = sobreEscribirRegistro(reg, pos);
+        return quePaso;
+    }
+    return false;
+}
+bool ArchivosManager::ModificarCliente(Cliente reg, int pos)
+{
+    char opc;
+    cout << "Desea sobre escribir el registro? (S/N)" << endl;
+    cin >> opc;
+    if (opc == 's' || opc == 'S')
+    {
+        bool quePaso = sobreEscribirRegistro(reg, pos);
+        return quePaso;
+    }
+    return false;
+}
+bool ArchivosManager::ListarCliente(Cliente reg) const
+{
+    FILE* p = fopen(_nombreArchivo, "rb");
+    if (p == nullptr)
+    {
+        return false;
+    }
+
+    while (fread(&reg, sizeof(Cliente), 1, p) == 1)
+    {
+        reg.Mostrar();
+    }
+    fclose(p);
+    return true;
+}
+bool ArchivosManager::sobreEscribirRegistro(Cliente reg, int pos)
+{
+    FILE* p = fopen(_nombreArchivo, "rb+");
+    if (p == NULL)
+    {
+        return false;
+    }
+    fseek(p, sizeof(Cliente) * pos, 0);
+    bool escribio = fwrite(&reg, sizeof reg, 1, p);
+    fclose(p);
+    return escribio;
+}
+int ArchivosManager::BuscarClienteXID(int id) const
+{
+    FILE* p = fopen(_nombreArchivo, "rb");
+    if (p == nullptr)
+    {
+        return -1;
+    }
+
+    int i = 0;
+    Cliente reg;
+    while (fread(&reg, sizeof(Cliente), 1, p) == 1)
+    {
+        if (reg.getId() == id)
+        {
+            fclose(p);
+            return i;
+        }
+        i++;
+    }
+    fclose(p);
+    return -1;
+}
+int ArchivosManager::BuscarCLienteXDNI(int dni) const
+{
+    FILE* p = fopen(_nombreArchivo, "rb");
+    if (p == nullptr)
+    {
+        return -1;
+    }
+
+    int i = 0;
+    Cliente reg;
+    while (fread(&reg, sizeof(Cliente), 1, p) == 1)
+    {
+        if (reg.getDNI() == dni)
+        {
+            fclose(p);
+            return i;
+        }
+        i++;
+    }
+    fclose(p);
+    return -1;
+}
+Cliente ArchivosManager::BuscarCliente(int n) const
+{
+    Cliente reg;
+    FILE* p = fopen(_nombreArchivo, "rb");
+    if (p == nullptr)
+    {
+        return reg;
+    }
+    int pos;
+
+    if (n>999999)
+    {
+        pos = BuscarCLienteXDNI(n);
+    } else { 
+        pos = BuscarClienteXID(n); 
+    }
+    
+    fseek(p, sizeof(Cliente) * pos, 0);
+    fread(&reg, sizeof(Cliente), 1, p);
+
+    if (pos != -1)
+    {
+        fclose(p);
+        return reg;
+    }
+    return reg;
+    fclose(p);
 }
