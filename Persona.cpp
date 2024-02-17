@@ -36,32 +36,30 @@ bool Persona::getEstado(){return _estado;}
 
 void Persona::Cargar()
 {
-	int dni, id;
+	int dni;
 	char nombre[40], apellido[40], direccion[100], email[50];
 	Fecha fechaAlta;
 
-	cout << "INGRESE ID: ";
-	cin >> id;
 	cout << endl;
 	cout << "DNI: ";
 	cin >> dni;
+	cin.ignore();  // Ignora el salto de línea pendiente después de la entrada de dni
 	cout << endl;
 	cout << "NOMBRE: ";
-	cin >> nombre;
+	cin.getline(nombre, sizeof(nombre));
 	cout << endl;
 	cout << "APELLIDO: ";
-	cin >> apellido;
+	cin.getline(apellido, sizeof(apellido));
 	cout << endl;
 	cout << "EMAIL: ";
-	cin >> email;
+	cin.getline(email, sizeof(email));
 	cout << endl;
 	cout << "DOMICILIO: ";
-	cin >> direccion;
+	cin.getline(direccion, sizeof(direccion));
 	cout << endl;
 	setFechaAlta();
 	cout << endl;
 
-	setId(id);
 	setDni(dni);
 	setNombre(nombre);
 	setApellido(apellido);
@@ -75,6 +73,27 @@ void Persona::Mostrar()
 	if (_estado == true)
 	{
 		cout << setw(5) << getId();
+		cout << setw(15) << getDNI();
+		cout << setw(20) << getNombre();
+		cout << setw(20) << getApellido();
+		cout << setw(20) << getEmail();
+		cout << setw(45) << getDomicilio();
+		cout << setw(75) << getFechaAlta().toString() << endl;
+		cout << "---------------------------------------------------------------------------------------------------------------------------------------------------------------" << endl;
+	}
+
+	/*int i;
+	mostrarEncabezado();
+	for (int i = 0; i < 1; i++) {
+		mostrarContenido();
+	}*/
+	cout << endl;
+}
+
+void Persona::Mostrar2()
+{
+	if (_estado == true)
+	{
 		cout << setw(15) << getDNI();
 		cout << setw(20) << getNombre();
 		cout << setw(20) << getApellido();

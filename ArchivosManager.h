@@ -3,6 +3,7 @@
 
 class Usuarios;
 class Cliente;
+class Proveedor;
 
 using namespace std;
 
@@ -34,7 +35,7 @@ public:
 
 	// METODOS PARA Proveedor
 
-	int ObtenerUltimoIdCliente() const;
+	int ObtenerUltimoIdProveedor() const;
 	bool AltaProveedor(Proveedor reg);
 	bool BajaProveedor(int id);
 	bool ModificarProveedor(Proveedor reg, int pos);
@@ -42,7 +43,7 @@ public:
 	bool sobreEscribirRegistroProveedor(Proveedor reg, int pos);
 	int BuscarProveedorXID(int id) const;
 	int BuscarProveedorXDNI(int dni) const;
-	Proveedor BuscarProveeedor(int n) const;
+	Proveedor BuscarProveedor(int n) const;
 	
 
 private:

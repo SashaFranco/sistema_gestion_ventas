@@ -3,6 +3,7 @@
 using namespace std;
 #include "Fecha.h"
 #include <iomanip>
+#include "Helpers.h"
 
 class Persona
 {
@@ -12,6 +13,7 @@ public:
 
 	void Cargar();
 	void Mostrar();
+	void Mostrar2();
 
 	void setId(int id);
 	void setDni(int d);

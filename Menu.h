@@ -31,6 +31,11 @@ public:
 	void mostrarUsuarios();
 	void mostrarBk();
 
+	// MOSTRAR ULTIMOS MENUS (NIVEL 3)
+	void mostrarABMCLientes();
+	void mostrarABMProveedores();
+	void mostrarABMProductos();
+
 private:
 	Fecha _fechaSitema;
 	Manager _manager;

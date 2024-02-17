@@ -205,10 +205,13 @@ void Menu::mostrarABM()
         switch (opc)
         {
         case 1:
+            mostrarABMCLientes();
             break;
         case 2:
+            mostrarABMProveedores();
             break;
         case 3:
+            mostrarABMProductos();
             break;
         case 0:
             return;
@@ -355,4 +358,60 @@ void Menu::mostrarBk()
             break;
         }
     }
+}
+
+void Menu::mostrarABMCLientes()
+{
+    while (true)
+    {
+        system("cls");
+        int opc;
+        cout << left;
+        cout << setw(40) << "SISTEMA DE GESTION PARA LA VENTA DE HERRAJES" << endl;
+        cout << setw(40) << "--------------------------------------------" << endl;
+        cout << setw(40) << "--------------MENU ABM CLIENTES-------------" << endl;
+        cout << setw(40) << "--------------------------------------------" << endl;
+        // Opciones del menú de ABM
+        cout << setw(40) << "1. ALTA DE CLIENTE NUEVO" << endl;
+        cout << setw(40) << "2. BAJA DE CLIENTE" << endl;
+        cout << setw(40) << "3. MODIFICAR CLIENTE" << endl;
+        cout << setw(40) << "4. LISTAR CLIENTES" << endl;
+        cout << setw(40) << "5. BUSCAR CLIENTE POR ID O DNI" << endl;
+        cout << setw(40) << "--------------------------------------------" << endl;
+        cout << setw(40) << "0. VOLVER AL MENU PRINCIPAL" << endl;
+        setConsoleSize(45, 45);
+        cin >> opc;
+
+        switch (opc)
+        {
+        case 1:
+            _cliente.AltaCliente();
+            break;
+        case 2:
+            break;
+        case 3:
+            break;
+        case 4:
+            _cliente.ListarClientes();
+            break;
+        case 5:
+            break;
+        case 0:
+            return;
+            break;
+        default:
+            cout << "INGRESE UNA OPCION VALIDA" << endl;
+            system("pause");
+            break;
+        }
+    }
+
+}
+
+void Menu::mostrarABMProveedores()
+{
+}
+
+void Menu::mostrarABMProductos()
+{
 }
