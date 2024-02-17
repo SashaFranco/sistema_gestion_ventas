@@ -76,8 +76,8 @@ void Persona::Mostrar()
 		cout << setw(15) << getDNI();
 		cout << setw(20) << getNombre();
 		cout << setw(20) << getApellido();
-		cout << setw(20) << getEmail();
-		cout << setw(45) << getDomicilio();
+		cout << setw(65) << getEmail();
+		cout << setw(65) << getDomicilio();
 		cout << setw(75) << getFechaAlta().toString() << endl;
 		cout << "---------------------------------------------------------------------------------------------------------------------------------------------------------------" << endl;
 	}
@@ -97,7 +97,7 @@ void Persona::Mostrar2()
 		cout << setw(15) << getDNI();
 		cout << setw(20) << getNombre();
 		cout << setw(20) << getApellido();
-		cout << setw(20) << getEmail();
+		cout << setw(65) << getEmail();
 		cout << setw(45) << getDomicilio();
 		cout << setw(75) << getFechaAlta().toString() << endl;
 		cout << "---------------------------------------------------------------------------------------------------------------------------------------------------------------" << endl;

@@ -12,7 +12,6 @@ void Cliente::mostrarEncabezado()
 	cout << setw(75) << "FECHA DE ALTA" << endl;
 	cout << "---------------------------------------------------------------------------------------------------------------------------------------------------------------" << endl;
 }
-
 void Cliente::mostrarEncabezado2()
 {
 	cout << left;
@@ -67,13 +66,38 @@ void Cliente::AltaCliente()
 		}
 	}
 }
-
+void Cliente::BajaCliente()
+{
+	system("cls");
+	cout << "INGRESE EL :" << endl << endl;
+}
 void Cliente::ListarClientes()
 {
 	Cliente cliente;
 	system("cls");
-	setConsoleSize(20, 160);
+	setConsoleSize(100, 160);
 	cliente.mostrarEncabezado();
 	_reg.ListarCliente(cliente);
 	system("pause");
 }
+
+void Cliente::BuscarCliente()
+{
+	system("cls");
+	cout << "INGRESE EL DNI O EL ID DEL CLIENTE A BORRAR:" << endl << endl;
+	int num;
+	cin >> num;
+	Cliente cliente;
+	cliente = _reg.BuscarCliente(num);
+	if (cliente.getId()==-1)
+	{
+		cout << "NO SE ENCONTRO CLIENTE" << endl;
+		return;
+	}
+	setConsoleSize(20, 160);
+	cout << "CLIENTE ENCONTRADO: " << endl << endl;
+	cliente.mostrarEncabezado();
+	cliente.Mostrar();
+	system("pause");
+}
+

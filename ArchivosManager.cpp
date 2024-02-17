@@ -10,11 +10,14 @@ ArchivosManager::ArchivosManager(const char* n){
 // METODOS PARA USUARIOS
 int ArchivosManager::ObtenerUltimoId() const
 {
+    int pos;
     FILE* p = fopen(_nombreArchivo, "rb");
     if (p == nullptr) return -1;
 
-    // se para en el principio del utimo registro
-    fseek(p, sizeof(Usuarios), SEEK_END); 
+    fseek(p, 0, SEEK_END);
+    pos = ftell(p);
+    int ultimoRegistro = pos - sizeof(Usuarios);
+    fseek(p, ultimoRegistro, SEEK_SET);
 
     Usuarios reg;
     if (fread(&reg, sizeof(Usuarios), 1, p) != 1) {
@@ -130,11 +133,14 @@ bool ArchivosManager::ListarUsuarios(Usuarios reg)
 // METODOS PARA CLIENTES
 int ArchivosManager::ObtenerUltimoIdCliente() const
 {
+    int pos;
     FILE* p = fopen(_nombreArchivo, "rb");
     if (p == nullptr) return -1;
 
-    // se para en el principio del utimo registro
-    fseek(p, sizeof(Cliente), SEEK_END);
+    fseek(p, 0, SEEK_END);
+    pos = ftell(p);
+    int ultimoRegistro = pos - sizeof(Cliente);
+    fseek(p, ultimoRegistro, SEEK_SET);
 
     Cliente reg;
     if (fread(&reg, sizeof(Cliente), 1, p) != 1) {
@@ -292,19 +298,23 @@ Cliente ArchivosManager::BuscarCliente(int n) const
 // METODOS PARA PROVEEDORES
 int ArchivosManager::ObtenerUltimoIdProveedor() const
 {
+    int pos;
     FILE* p = fopen(_nombreArchivo, "rb");
     if (p == nullptr) return -1;
 
-    // se para en el principio del utimo registro
-    fseek(p, sizeof(Proveedor), SEEK_END);
+    fseek(p, 0, SEEK_END);
+    pos = ftell(p);
+    int ultimoRegistro = pos - sizeof(Proveedor);
+    fseek(p, ultimoRegistro, SEEK_SET);
 
     Proveedor reg;
     if (fread(&reg, sizeof(Proveedor), 1, p) != 1) {
         fclose(p);
         return -1;
     }
+
     fclose(p);
-    return reg.getId();
+    return reg.getId();;
 }
 bool ArchivosManager::AltaProveedor(Proveedor reg)
 {

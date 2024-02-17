@@ -395,6 +395,7 @@ void Menu::mostrarABMCLientes()
             _cliente.ListarClientes();
             break;
         case 5:
+            _cliente.BuscarCliente();
             break;
         case 0:
             return;
