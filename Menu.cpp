@@ -439,16 +439,16 @@ void Menu::mostrarABMProveedores()
             _proveedor.AltaProveedor();
             break;
         case 2:
-         
+            _proveedor.BajaProveedor();
             break;
         case 3:
-           
+            _proveedor.ModificarProveedor();
             break;
         case 4:
-       
+            _proveedor.ListarProveedores();
             break;
         case 5:
-         
+            _proveedor.BuscarProveedor();
             break;
         case 0:
             return;

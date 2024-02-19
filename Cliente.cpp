@@ -23,7 +23,6 @@ void Cliente::mostrarEncabezado2()
 	cout << setw(55) << "FECHA DE ALTA" << endl;
 	cout << "-------------------------------------------------------------------------------------------------------------------------------------------------------------------------" << endl;
 }
-
 void Cliente::AltaCliente()
 {
 	system("cls");
@@ -73,7 +72,7 @@ void Cliente::BajaCliente()
 	bool borro = false;
 	int ID_DNI;
 	setConsoleSize(10, 60);
-	cout << "Ingrese el ID o DNI del usuario a borrar: ";
+	cout << "Ingrese el ID o DNI del cliente a borrar: ";
 	cin >> ID_DNI;
 	cout << endl;
 
@@ -97,7 +96,6 @@ void Cliente::BajaCliente()
 		{
 		case 1:
 			system("cls");
-			setConsoleSize(100, 160);
 			borro = _reg.BajaCliente(aux.getId());
 
 			if (borro)
@@ -124,7 +122,7 @@ void Cliente::BajaCliente()
 	{
 		system("cls");
 		setConsoleSize(10, 60);
-		cout << "NO SE ENCUENTRA USUARIO EN SISTEMA" << endl;
+		cout << "NO SE ENCUENTRA CLIENTE EN SISTEMA" << endl;
 		system("pause");
 	}
 }
