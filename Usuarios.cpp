@@ -51,8 +51,8 @@ bool Usuarios::getEstado() const
 
 void Usuarios::Mostar() const
 {
-	cout << setw(5) << GetId() << endl;
-	cout << setw(5) << GetNombre() << endl;
+	cout << setw(5) << "ID: " << GetId() << endl;
+	cout << setw(5) << "Nombre: " << GetNombre() << endl << endl;
     //cout << "Passw: " << GetPassw() << endl;
 }
 

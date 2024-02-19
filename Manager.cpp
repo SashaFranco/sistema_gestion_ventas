@@ -119,7 +119,6 @@ void Manager::BajaUsuario()
         system("pause");
     }
 
-
 }
 
 void Manager::MoidificarUsuarios()
@@ -139,8 +138,8 @@ void Manager::MoidificarUsuarios()
     cin >> inputPassw;
     cout << endl;
 
-
     aux = _reg.BuscarUsuario(inputUsuario, inputPassw);
+
     if (aux.GetId() != -1)
     {
         setConsoleSize(10, 60);
@@ -196,9 +195,13 @@ void Manager::MoidificarUsuarios()
         system("pause");
     }
 }
-
 void Manager::listarUsuarios()
 {
-    _reg.ListarUsuarios(_usuarios);
+    system("cls");
+    if (_reg.ListarUsuarios(_usuarios))
+    {
+        _reg.ListarUsuarios(_usuarios);
+
+    }
     system("pause");
 }

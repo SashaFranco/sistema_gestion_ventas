@@ -163,7 +163,14 @@ bool ArchivosManager::AltaCliente(Cliente reg)
 }
 bool ArchivosManager::BajaCliente(int id)
 {
-    int pos = BuscarClienteXID(id);
+    FILE* p = fopen(_nombreArchivo, "rb");
+    if (p == nullptr)
+    {
+        return false;
+    }
+    int pos = BuscarClienteXID(id, p);
+    fclose(p);
+
     if (pos == -1)
     {
         cout << "NO SE ENCONTRO REGISTRO" << endl;
@@ -221,13 +228,13 @@ bool ArchivosManager::sobreEscribirRegistro(Cliente reg, int pos)
     fclose(p);
     return escribio;
 }
-int ArchivosManager::BuscarClienteXID(int id) const
+int ArchivosManager::BuscarClienteXID(int id, FILE *p) const
 {
-    FILE* p = fopen(_nombreArchivo, "rb");
+    /*FILE* p = fopen(_nombreArchivo, "rb");
     if (p == nullptr)
     {
         return -1;
-    }
+    }*/
 
     int i = 0;
     Cliente reg;
@@ -235,15 +242,37 @@ int ArchivosManager::BuscarClienteXID(int id) const
     {
         if (reg.getId() == id)
         {
-            fclose(p);
+            //fclose(p);
             return i;
         }
         i++;
     }
-    fclose(p);
+    //fclose(p);
     return -1;
 }
-int ArchivosManager::BuscarCLienteXDNI(int dni) const
+int ArchivosManager::BuscarCLienteXDNI(int dni, FILE* p) const
+{
+    /*FILE* p = fopen(_nombreArchivo, "rb");
+    if (p == nullptr)
+    {
+        return -1;
+    }*/
+
+    int i = 0;
+    Cliente reg;
+    while (fread(&reg, sizeof(Cliente), 1, p) == 1)
+    {
+        if (reg.getDNI() == dni)
+        {
+            //fclose(p);
+            return i;
+        }
+        i++;
+    }
+    //fclose(p);
+    return -1;
+}
+int ArchivosManager::BuscarPosicion(Cliente reg)
 {
     FILE* p = fopen(_nombreArchivo, "rb");
     if (p == nullptr)
@@ -251,11 +280,11 @@ int ArchivosManager::BuscarCLienteXDNI(int dni) const
         return -1;
     }
 
+    Cliente aux;
     int i = 0;
-    Cliente reg;
-    while (fread(&reg, sizeof(Cliente), 1, p) == 1)
+    while (fread(&aux, sizeof(Cliente), 1, p) == 1)
     {
-        if (reg.getDNI() == dni)
+        if (reg.getId() == aux.getId())
         {
             fclose(p);
             return i;
@@ -277,21 +306,19 @@ Cliente ArchivosManager::BuscarCliente(int n) const
 
     if (n>999999)
     {
-        pos = BuscarCLienteXDNI(n);
+        pos = BuscarCLienteXDNI(n, p);
     } else { 
-        pos = BuscarClienteXID(n); 
+        pos = BuscarClienteXID(n, p); 
     }
-    
-    fseek(p, sizeof(Cliente) * pos, 0);
-    fread(&reg, sizeof(Cliente), 1, p);
-
-    if (pos != -1)
+    if (pos!=-1)
     {
+        fseek(p, sizeof(Cliente) * pos, 0);
+        fread(&reg, sizeof(Cliente), 1, p);
         fclose(p);
         return reg;
     }
-    return reg;
     fclose(p);
+    return reg;
 }
 
 
@@ -312,9 +339,8 @@ int ArchivosManager::ObtenerUltimoIdProveedor() const
         fclose(p);
         return -1;
     }
-
     fclose(p);
-    return reg.getId();;
+    return reg.getId();
 }
 bool ArchivosManager::AltaProveedor(Proveedor reg)
 {
@@ -328,7 +354,14 @@ bool ArchivosManager::AltaProveedor(Proveedor reg)
 }
 bool ArchivosManager::BajaProveedor(int id)
 {
-    int pos = BuscarProveedorXID(id);
+    FILE* p = fopen(_nombreArchivo, "rb");
+    if (p == nullptr)
+    {
+        return false;
+    }
+    int pos = BuscarProveedorXID(id, p);
+    fclose(p);
+
     if (pos == -1)
     {
         cout << "NO SE ENCONTRO REGISTRO" << endl;
@@ -337,7 +370,7 @@ bool ArchivosManager::BajaProveedor(int id)
     Proveedor reg = BuscarProveedor(id);
     reg.Mostrar();
     char opc;
-    cout << "desea borrar el registro? (S/N)" << endl;
+    cout << "Desea borrar el registro? (S/N)" << endl;
     cin >> opc;
     if (opc == 's' || opc == 'S')
     {
@@ -386,41 +419,46 @@ bool ArchivosManager::sobreEscribirRegistroProveedor(Proveedor reg, int pos)
     fclose(p);
     return escribio;
 }
-int ArchivosManager::BuscarProveedorXID(int id) const
+int ArchivosManager::BuscarProveedorXID(int id, FILE *p) const
 {
-    FILE* p = fopen(_nombreArchivo, "rb");
-    if (p == nullptr)
-    {
-        return -1;
-    }
-
     int i = 0;
     Proveedor reg;
-    while (fread(&reg, sizeof(Proveedor), 1, p) == 1)
+    while (fread(&reg, sizeof(Cliente), 1, p) == 1)
     {
         if (reg.getId() == id)
-        {
-            fclose(p);
+        {  
             return i;
         }
         i++;
     }
-    fclose(p);
     return -1;
 }
-int ArchivosManager::BuscarProveedorXDNI(int dni) const
+int ArchivosManager::BuscarProveedorXDNI(int dni, FILE* p) const
+{
+    int i = 0;
+    Proveedor reg;
+    while (fread(&reg, sizeof(Cliente), 1, p) == 1)
+    {
+        if (reg.getDNI() == dni)
+        {;
+            return i;
+        }
+        i++;
+    }
+    return -1;
+}
+int ArchivosManager::BuscarPosicion(Proveedor reg)
 {
     FILE* p = fopen(_nombreArchivo, "rb");
     if (p == nullptr)
     {
         return -1;
     }
-
+    Proveedor aux;
     int i = 0;
-    Proveedor reg;
-    while (fread(&reg, sizeof(Proveedor), 1, p) == 1)
+    while (fread(&aux, sizeof(Proveedor), 1, p) == 1)
     {
-        if (reg.getDNI() == dni)
+        if (reg.getId() == aux.getId())
         {
             fclose(p);
             return i;
@@ -442,22 +480,20 @@ Proveedor ArchivosManager::BuscarProveedor(int n) const
 
     if (n > 999999)
     {
-        pos = BuscarProveedorXDNI(n);
+        pos = BuscarProveedorXDNI(n, p);
     }
     else {
-        pos = BuscarProveedorXID(n);
+        pos = BuscarProveedorXID(n, p);
     }
-
-    fseek(p, sizeof(Proveedor) * pos, 0);
-    fread(&reg, sizeof(Proveedor), 1, p);
-
     if (pos != -1)
     {
+        fseek(p, sizeof(Proveedor) * pos, 0);
+        fread(&reg, sizeof(Proveedor), 1, p);
         fclose(p);
         return reg;
     }
-    return reg;
     fclose(p);
+    return reg;
 }
 
 

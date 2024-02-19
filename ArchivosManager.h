@@ -28,8 +28,9 @@ public:
 	bool ModificarCliente( Cliente reg, int pos);
 	bool ListarCliente(Cliente reg) const;
 	bool sobreEscribirRegistro(Cliente reg, int pos);
-	int BuscarClienteXID(int id) const;
-	int BuscarCLienteXDNI(int dni) const;
+	int BuscarClienteXID(int id, FILE *p) const;
+	int BuscarCLienteXDNI(int dni, FILE *P) const;
+	int BuscarPosicion(Cliente reg);
 	Cliente BuscarCliente(int n) const;
 
 
@@ -41,9 +42,12 @@ public:
 	bool ModificarProveedor(Proveedor reg, int pos);
 	bool ListarProveedor(Proveedor reg) const;
 	bool sobreEscribirRegistroProveedor(Proveedor reg, int pos);
-	int BuscarProveedorXID(int id) const;
-	int BuscarProveedorXDNI(int dni) const;
+	int BuscarProveedorXID(int id, FILE *p) const;
+	int BuscarProveedorXDNI(int dni, FILE* p) const;
+	int BuscarPosicion(Proveedor reg);
 	Proveedor BuscarProveedor(int n) const;
+
+
 	
 
 private:
