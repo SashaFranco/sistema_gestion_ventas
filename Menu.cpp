@@ -47,7 +47,6 @@ void Menu::MostrarEntrada()
     }
     
 }
-
 void Menu::mostrar()
 {
     while (true)
@@ -104,7 +103,6 @@ void Menu::mostrar()
         }
     }
 }
-
 void Menu::mostrarCompras()
 {
     while (true)
@@ -463,4 +461,52 @@ void Menu::mostrarABMProveedores()
 
 void Menu::mostrarABMProductos()
 {
+    while (true)
+    {
+        system("cls");
+        int opc;
+        cout << left;
+        cout << setw(40) << "SISTEMA DE GESTION PARA LA VENTA DE HERRAJES" << endl;
+        cout << setw(40) << "--------------------------------------------" << endl;
+        cout << setw(40) << "------------MENU ABM PRODUCTOS------------" << endl;
+        cout << setw(40) << "--------------------------------------------" << endl;
+        // Opciones del menú de ABM
+        cout << setw(40) << "1. ALTA DE PRODUCTO NUEVO" << endl;
+        cout << setw(40) << "2. BAJA DE PRODUCTO" << endl;
+        cout << setw(40) << "3. MODIFICAR PRODUCTO" << endl;
+        cout << setw(40) << "4. LISTAR PRODUCTOS" << endl;
+        cout << setw(40) << "5. BUSCAR PRODUCTO POR ID" << endl;
+        cout << setw(40) << "6. BUSCAR PRODUCTO POR NOMBRE" << endl;
+        cout << setw(40) << "--------------------------------------------" << endl;
+        cout << setw(40) << "0. VOLVER AL MENU PRINCIPAL" << endl;
+        setConsoleSize(45, 45);
+        cin >> opc;
+
+        switch (opc)
+        {
+        case 1:
+            _manager.AltaProducto();
+            break;
+        case 2:
+            _manager.BajaProducto();
+            break;
+        case 3:
+            
+            break;
+        case 4:
+            _manager.listarProducto();
+            break;
+        case 5:
+          
+            break;
+        case 0:
+            return;
+            break;
+        default:
+            cout << "INGRESE UNA OPCION VALIDA" << endl;
+            system("pause");
+            break;
+        }
+    }
+
 }

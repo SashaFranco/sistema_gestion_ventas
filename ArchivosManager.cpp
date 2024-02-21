@@ -2,6 +2,7 @@
 #include "Usuarios.h"
 #include "Cliente.h"
 #include "Proveedor.h"
+#include "Producto.h"
 
 ArchivosManager::ArchivosManager(const char* n){
 	strcpy_s(_nombreArchivo, n);
@@ -423,7 +424,7 @@ int ArchivosManager::BuscarProveedorXID(int id, FILE *p) const
 {
     int i = 0;
     Proveedor reg;
-    while (fread(&reg, sizeof(Cliente), 1, p) == 1)
+    while (fread(&reg, sizeof(Proveedor), 1, p) == 1)
     {
         if (reg.getId() == id)
         {  
@@ -440,7 +441,7 @@ int ArchivosManager::BuscarProveedorXDNI(int dni, FILE* p) const
     while (fread(&reg, sizeof(Cliente), 1, p) == 1)
     {
         if (reg.getDNI() == dni)
-        {;
+        {
             return i;
         }
         i++;
@@ -496,5 +497,179 @@ Proveedor ArchivosManager::BuscarProveedor(int n) const
     return reg;
 }
 
+// METODOS PARA PRODUCTOS
+
+int ArchivosManager::ObtenerUltimoIdProducto() const
+{
+    int pos;
+    FILE* p = fopen(_nombreArchivo, "rb");
+    if (p == nullptr) return -1;
+
+    fseek(p, 0, SEEK_END);
+    pos = ftell(p);
+    int ultimoRegistro = pos - sizeof(Producto);
+    fseek(p, ultimoRegistro, SEEK_SET);
+
+    Producto reg;
+    if (fread(&reg, sizeof(Producto), 1, p) != 1) {
+        fclose(p);
+        return -1;
+    }
+    fclose(p);
+    return reg.GetId();
+}
+bool ArchivosManager::AltaProducto(Producto reg)
+{
+    reg.SetId(ObtenerUltimoIdProducto() + 1);
+    FILE* p = fopen(_nombreArchivo, "ab");
+    if (p == nullptr) return false;
+
+    fwrite(&reg, sizeof(Producto), 1, p);
+    fclose(p);
+    return true;
+}
+bool ArchivosManager::BajaProducto(int id)
+{
+    FILE* p = fopen(_nombreArchivo, "rb");
+    if (p == nullptr)
+    {
+        return false;
+    }
+    int pos = BuscarProductoXID(id, p);
+    fclose(p);
+
+    if (pos == -1)
+    {
+        cout << "NO SE ENCONTRO REGISTRO" << endl;
+        return false;
+    }
+    Producto reg = BuscarProducto(id);
+    reg.MostrarProducto();
+    char opc;
+    cout << "Desea borrar el registro? (S/N)" << endl;
+    cin >> opc;
+    if (opc == 's' || opc == 'S')
+    {
+        reg.SetEstado(false);
+        bool quePaso = sobreEscribirRegistroProducto(reg, pos);
+        return quePaso;
+    }
+    return false;
+}
+bool ArchivosManager::ModificarProducto(Producto reg, int pos)
+{
+    char opc;
+    cout << "Desea sobre escribir el registro? (S/N)" << endl;
+    cin >> opc;
+    if (opc == 's' || opc == 'S')
+    {
+        bool quePaso = sobreEscribirRegistroProducto(reg, pos);
+        return quePaso;
+    }
+    return false;
+}
+bool ArchivosManager::ListarProducto(Producto reg) const
+{
+    FILE* p = fopen(_nombreArchivo, "rb");
+    if (p == nullptr)
+    {
+        return false;
+    }
+
+    while (fread(&reg, sizeof(Producto), 1, p) == 1)
+    {
+        reg.MostrarProducto();
+    }
+    fclose(p);
+    return true;
+}
+bool ArchivosManager::sobreEscribirRegistroProducto(Producto reg, int pos)
+{
+    FILE* p = fopen(_nombreArchivo, "rb+");
+    if (p == NULL)
+    {
+        return false;
+    }
+    fseek(p, sizeof(Producto) * pos, 0);
+    bool escribio = fwrite(&reg, sizeof reg, 1, p);
+    fclose(p);
+    return escribio;
+}
+int ArchivosManager::BuscarProductoXID(int id, FILE* p) const
+{
+    int i = 0;
+    Producto reg;
+    while (fread(&reg, sizeof(Producto), 1, p) == 1)
+    {
+        if (reg.GetId() == id)
+        {
+            return i;
+        }
+        i++;
+    }
+    return -1;
+}
+int ArchivosManager::BuscarProductoXNombre(const char* nombre) const
+{
+    Producto reg;
+    FILE* p = fopen(_nombreArchivo, "rb");
+    if (p == nullptr)
+    {
+        return -1;
+    }
+    int pos = 0;
+
+    while (fread(&reg, sizeof(Producto), 1, p) == 1)
+    {
+        if (!strcmp(reg.GetNombre(),nombre))
+        {
+            return pos;
+        }
+        pos++;
+    }
+
+    fclose(p);
+    return -1;
+}
+int ArchivosManager::BuscarPosicion(Producto reg)
+{
+    FILE* p = fopen(_nombreArchivo, "rb");
+    if (p == nullptr)
+    {
+        return -1;
+    }
+    Producto aux;
+    int i = 0;
+    while (fread(&aux, sizeof(Producto), 1, p) == 1)
+    {
+        if (reg.GetId() == aux.GetId())
+        {
+            fclose(p);
+            return i;
+        }
+        i++;
+    }
+    fclose(p);
+    return -1;
+}
+Producto ArchivosManager::BuscarProducto(int n) const
+{
+    Producto reg;
+    FILE* p = fopen(_nombreArchivo, "rb");
+    if (p == nullptr)
+    {
+        return reg;
+    }
+
+    if (n!=-1)
+    {
+        fseek(p, sizeof(Producto) * n, 0);
+        fread(&reg, sizeof(Producto), 1, p);
+        fclose(p);
+        return reg;
+    }
+    fclose(p);
+    return reg;
+}
 
 

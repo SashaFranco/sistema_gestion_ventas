@@ -4,6 +4,7 @@
 class Usuarios;
 class Cliente;
 class Proveedor;
+class Producto;
 
 using namespace std;
 
@@ -46,6 +47,19 @@ public:
 	int BuscarProveedorXDNI(int dni, FILE* p) const;
 	int BuscarPosicion(Proveedor reg);
 	Proveedor BuscarProveedor(int n) const;
+
+	// METODOS PARA Producto
+
+	int ObtenerUltimoIdProducto() const;
+	bool AltaProducto(Producto reg);
+	bool BajaProducto(int id);
+	bool ModificarProducto(Producto reg, int pos);
+	bool ListarProducto(Producto reg) const;
+	bool sobreEscribirRegistroProducto(Producto reg, int pos);
+	int BuscarProductoXID(int id, FILE* p) const;
+	int BuscarProductoXNombre(const char* nombre) const;
+	int BuscarPosicion(Producto reg);
+	Producto BuscarProducto(int n) const;
 
 
 	

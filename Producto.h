@@ -12,35 +12,45 @@ class Producto
 public:
 
 	Producto();
+	Producto(int id, 
+		const char* nombre, 
+		int precioVenta, 
+		int precioCompra, 
+		Cliente cliente,
+		Proveedor proveedor);
 
-	void CargarVentaProducto();
-	void CargarCompraProducto();
+	void CargarProducto();
 	void MostrarProducto();
+	void MostrarProducto2();
 
 	void SetId(int id);
 	void SetNombre(const char * nombre);
 	void SetCantidad(int cantidad);
 	void SetCliente(Cliente cliente);
 	void SetProveedor(Proveedor proveedor);
-	void SetFecha(Fecha fecha);
+	void SetFecha();
 	void SetEstado(bool estado);
-	void SetPrecio(float precio);
-	void SetCompraVenta(int compraVenta);
+	void SetPrecioVenta(float precioVenta);
+	void SetPrecioCompra(float precioCompra);
+	void SetDescripcion(const char* desc);
+	
 
 	int GetId() const;
-	char* GetNombre() const;
+	char* GetNombre();
+	char* GetDescripcion();
 	int GetCantidad() const;
 	Cliente GetCliente() const;
 	Proveedor GetProveedor() const;
 	Fecha GetFecha() const;
 	bool GetEstado() const;
-	float GetPrecio() const;
-	int GetCompraVenta() const;
+	float GetPrecioVenta() const;
+	float GetPrecioCompra() const;
+	
 
 private:
-	int _id, _cantidad, _compraVenta; // 1 compra - 2 venta
-	float _precio;
-	char _nombre[40];
+	int _id, _cantidad;
+	float _precioVenta, _precioCompra;
+	char _nombre[40], _descripcion[100];
 	Cliente _cliente;
 	Proveedor _proveedor;
 	Fecha _fecha;
