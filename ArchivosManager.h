@@ -5,6 +5,7 @@ class Usuarios;
 class Cliente;
 class Proveedor;
 class Producto;
+class Stock;
 
 using namespace std;
 
@@ -60,6 +61,15 @@ public:
 	int BuscarProductoXNombre(const char* nombre) const;
 	int BuscarPosicion(Producto reg);
 	Producto BuscarProducto(int n) const;
+
+	// METODOS PARA EL STOCK
+	int ObtenerUltimoIdStock() const;
+	bool AltaStock(Stock reg);
+	bool ListarStock(Stock reg) const;
+	int BuscarPosicionStock(Stock reg);
+	int BuscarStockXID(int id, FILE* p) const;
+	Stock BuscarStockFecha(Fecha fecha) const;
+	Stock BuscarStock(int n) const;
 
 private:
 	char _nombreArchivo[30];

@@ -3,6 +3,7 @@
 #include "Cliente.h"
 #include "Proveedor.h"
 #include "Producto.h"
+#include "Stock.h"
 
 ArchivosManager::ArchivosManager(const char* n){
 	strcpy_s(_nombreArchivo, n);
@@ -497,7 +498,7 @@ Proveedor ArchivosManager::BuscarProveedor(int n) const
     return reg;
 }
 
-// METODOS PARA PRODUCTOS
+// METODOS PARA PRODUCTOS - Revisar baja de producto
 
 int ArchivosManager::ObtenerUltimoIdProducto() const
 {
@@ -672,5 +673,75 @@ Producto ArchivosManager::BuscarProducto(int n) const
     fclose(p);
     return reg;
 }
+
+// METODOS PARA EL STOCK
+
+int ArchivosManager::ObtenerUltimoIdStock() const
+{
+    int pos;
+    FILE* p = fopen(_nombreArchivo, "rb");
+    if (p == nullptr) return -1;
+
+    fseek(p, 0, SEEK_END);
+    pos = ftell(p);
+    int ultimoRegistro = pos - sizeof(Stock);
+    fseek(p, ultimoRegistro, SEEK_SET);
+
+    Stock reg;
+    if (fread(&reg, sizeof(Stock), 1, p) != 1) {
+        fclose(p);
+        return -1;
+    }
+    fclose(p);
+    return reg.GetId();
+}
+bool ArchivosManager::AltaStock(Stock reg)
+{
+    reg.SetId(ObtenerUltimoIdProducto() + 1);
+    FILE* p = fopen(_nombreArchivo, "ab");
+    if (p == nullptr) return false;
+
+    fwrite(&reg, sizeof(Stock), 1, p);
+    fclose(p);
+    return true;
+}
+bool ArchivosManager::ListarStock(Stock reg) const
+{
+    FILE* p = fopen(_nombreArchivo, "rb");
+    if (p == nullptr)
+    {
+        return false;
+    }
+
+    while (fread(&reg, sizeof(Stock), 1, p) == 1)
+    {
+        reg.MostrarStock();
+    }
+    fclose(p);
+    return true;
+}
+
+int ArchivosManager::BuscarPosicionStock(Stock reg)
+{
+    return 0;
+}
+
+int ArchivosManager::BuscarStockXID(int id, FILE* p) const
+{
+    return 0;
+}
+
+Stock ArchivosManager::BuscarStockFecha(Fecha fecha) const
+{
+    return Stock();
+}
+
+Stock ArchivosManager::BuscarStock(int n) const
+{
+    return Stock();
+}
+
+
+
 
 

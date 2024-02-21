@@ -35,6 +35,9 @@ public:
 
 	void BuscarProductoXID();
 	void BuscarProductoXNombre();
+	
+	// METODOS PARA GESTIONAR STOCK
+
 
 
 	// SETTERS
