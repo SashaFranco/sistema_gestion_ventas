@@ -297,7 +297,7 @@ void Manager::BajaProducto()
         case 1:
             system("cls");
             borro = _reg.BajaProducto(aux.GetId());
-
+            system("pause");
             if (borro)
             {
                 system("cls");
@@ -326,7 +326,6 @@ void Manager::BajaProducto()
         system("pause");
     }
 }
-
 void Manager::MoidificarProducto()
 {
     system("cls");
@@ -355,11 +354,11 @@ void Manager::MoidificarProducto()
             cout << endl << endl;
             int opc, pos;
             pos = _regProductos.BuscarPosicion(aux);
-            cout << "Se encontro Cliente!" << " ¿Que desea cambiar?" << endl;
+            cout << "Se encontro Producto!" << " ¿Que desea cambiar?" << endl;
             cout << "1- Nombre" << endl;
-            cout << "2- Apellido" << endl;
-            cout << "3- Direcion" << endl;
-            cout << "4- Email" << endl;
+            cout << "2- Descripcion" << endl;
+            cout << "3- Precio de venta" << endl;
+            cout << "4- Precio de compra" << endl;
             cout << "0- Cancelar" << endl;
             cout << "Opcion elegida: ";
             cin >> opc;
@@ -369,16 +368,15 @@ void Manager::MoidificarProducto()
                 system("cls");
                 setConsoleSize(10, 60);
                 cout << "INGRESE NUEVO NOMBRE: " << endl;
-
                 cin.ignore();
                 cin.getline(nombre, sizeof(nombre));
-                aux.setNombre(nombre);
+                aux.SetNombre(nombre);
 
-                modifico = _reg.ModificarCliente(aux, pos);
+                modifico = _regProductos.ModificarProducto(aux, pos);
                 if (modifico)
                 {
                     system("cls");
-                    cout << "NOMBRE DE CLIENTE CAMBIADO CON EXITO" << endl;
+                    cout << "NOMBRE DE PRODUCTO CAMBIADO CON EXITO" << endl;
                     system("pause");
                 }
                 else {
@@ -390,17 +388,17 @@ void Manager::MoidificarProducto()
             case 2:
                 system("cls");
                 setConsoleSize(10, 60);
-                cout << "INGRESE NUEVO APELLIDO: " << endl;
+                cout << "INGRESE NUEVA DESCRIPCION: " << endl;
 
                 cin.ignore();
-                cin.getline(apellido, sizeof(apellido));
-                aux.setApellido(apellido);
+                cin.getline(desc, sizeof(desc));
+                aux.SetDescripcion(desc);
 
-                modifico = _reg.ModificarCliente(aux, pos);
+                modifico = _regProductos.ModificarProducto(aux, pos);
                 if (modifico)
                 {
                     system("cls");
-                    cout << "APELLIDO DE CLIENTE CAMBIADO CON EXITO" << endl;
+                    cout << "DESCRIPCION DE PRODUCTO CAMBIADO CON EXITO" << endl;
                     system("pause");
                 }
                 else {
@@ -412,17 +410,16 @@ void Manager::MoidificarProducto()
             case 3:
                 system("cls");
                 setConsoleSize(10, 60);
-                cout << "INGRESE NUEVA DIRECCION: " << endl;
+                cout << "INGRESE NUEVO PRECIO DE VENTA: " << endl;
 
-                cin.ignore();
-                cin.getline(direccion, sizeof(direccion));
-                aux.setDomicilio(direccion);
+                cin >> precioVenta;
+                aux.SetPrecioVenta(precioVenta);
 
-                modifico = _reg.ModificarCliente(aux, pos);
+                modifico = _regProductos.ModificarProducto(aux, pos);
                 if (modifico)
                 {
                     system("cls");
-                    cout << "DIRECCION DE CLIENTE CAMBIADO CON EXITO" << endl;
+                    cout << "PRECIO DE VENTA CAMBIADO CON EXITO" << endl;
                     system("pause");
                 }
                 else {
@@ -434,17 +431,16 @@ void Manager::MoidificarProducto()
             case 4:
                 system("cls");
                 setConsoleSize(10, 60);
-                cout << "INGRESE NUEVO EMAIL: " << endl;
+                cout << "INGRESE NUEVO PRECIO DE COMPRA: " << endl;
 
-                cin.ignore();
-                cin.getline(email, sizeof(email));
-                aux.setEmail(email);
+                cin >> precioCompra;
+                aux.SetPrecioCompra(precioCompra);
 
-                modifico = _reg.ModificarCliente(aux, pos);
+                modifico = _regProductos.ModificarProducto(aux, pos);
                 if (modifico)
                 {
                     system("cls");
-                    cout << "EMAIL DE CLIENTE CAMBIADO CON EXITO" << endl;
+                    cout << "PRECIO DE COMPRA CAMBIADO CON EXITO" << endl;
                     system("pause");
                 }
                 else {
@@ -468,18 +464,65 @@ void Manager::MoidificarProducto()
     {
         system("cls");
         setConsoleSize(10, 60);
-        cout << "NO SE ENCUENTRA CLIENTE EN SISTEMA" << endl;
+        cout << "NO SE ENCUENTRA PRODUCTO EN SISTEMA" << endl;
         system("pause");
     }
 }
-
 void Manager::listarProducto()
 {
     Producto producto;
     system("cls");
-    setConsoleSize(60, 170);
+    setConsoleSize(25, 170);
     MostrarEncabezadoProductos();
     _regProductos.ListarProducto(producto);
     system("pause");
+}
+
+void Manager::BuscarProductoXID()
+{
+    Producto producto;
+    system("cls");
+    setConsoleSize(60, 170);
+    cout << "INGRESE ID DEL PRODUCTO:" << endl;
+    int id;
+    cin >> id;
+    
+    producto = _regProductos.BuscarProducto(id);
+    if (producto.GetId()!=-1)
+    {
+        MostrarEncabezadoProductos();
+        producto.MostrarProducto();
+        system("pause");
+    }
+    else {
+        system("cls");
+        cout << "NO SE ENCONTRO PRODUCTO, VUELVA A INTENTA" << endl;
+        system("pause");
+    }
+}
+
+void Manager::BuscarProductoXNombre()
+{
+    Producto producto;
+    system("cls");
+    setConsoleSize(25, 170);
+    cout << "INGRESE NOMBRE DEL PRODUCTO (DEBE SER EXACTO):" << endl;
+    int pos;
+    char nombre[40] = {};
+    cin.ignore();
+    cin.getline(nombre, sizeof(nombre));
+    pos = _regProductos.BuscarProductoXNombre(nombre);
+    if (pos!=-1)
+    {
+        producto = _regProductos.BuscarProducto(pos);
+        MostrarEncabezadoProductos();
+        producto.MostrarProducto();
+        system("pause");
+    } else 
+    {
+        system("cls");
+        cout << "NO SE ENCONTRO PRODUCTO, VUELVA A INTENTA" << endl;
+        system("pause");
+    }
 }
 

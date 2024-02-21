@@ -33,6 +33,10 @@ public:
 	void MoidificarProducto();
 	void listarProducto();
 
+	void BuscarProductoXID();
+	void BuscarProductoXNombre();
+
+
 	// SETTERS
 	void setUsuarios(Usuarios usuario);
 

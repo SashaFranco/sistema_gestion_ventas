@@ -118,6 +118,7 @@ void Menu::mostrarCompras()
         cout << setw(40) << "1. INGRESAR AL STOCK PRODUCTOS COMPRADOS" << endl;
         cout << setw(40) << "2. LISTAR STOCK DE PRODUCTOS" << endl;
         cout << setw(40) << "3. BUSCAR PRODUCTO" << endl;
+        cout << setw(40) << "4. INGRESAR COMPRA" << endl;
         cout << setw(40) << "--------------------------------------------" << endl;
         cout << setw(40) << "0. VOLVER AL MENU PRINCIPAL" << endl;
         setConsoleSize(45, 45);
@@ -131,6 +132,8 @@ void Menu::mostrarCompras()
         case 2:
             break;
         case 3:
+            break;
+        case 4:
             break;
         case 0:
             return;
@@ -248,8 +251,10 @@ void Menu::mostrarRreportes()
         switch (opc)
         {
         case 1:
+            _cliente.ListarClientes();
             break;
         case 2:
+            _proveedor.ListarProveedores();
             break;
         case 3:
             break;
@@ -488,16 +493,19 @@ void Menu::mostrarABMProductos()
             _manager.AltaProducto();
             break;
         case 2:
-            _manager.BajaProducto();
+            _manager.BajaProducto(); // REVISAR POR QUE NO DA DE BAJA LOS PRODUCTOS
             break;
         case 3:
-            
+            _manager.MoidificarProducto();
             break;
         case 4:
             _manager.listarProducto();
             break;
         case 5:
-          
+            _manager.BuscarProductoXID();
+            break;
+        case 6:
+            _manager.BuscarProductoXNombre();
             break;
         case 0:
             return;

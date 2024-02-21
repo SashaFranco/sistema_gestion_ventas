@@ -48,6 +48,15 @@
     <ClCompile Include="Producto.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="Stock.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Venta.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Transaccion.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Menu.h">
@@ -78,6 +87,15 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="Producto.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Stock.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Venta.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Transaccion.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

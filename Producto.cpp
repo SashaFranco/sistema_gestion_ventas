@@ -3,13 +3,10 @@
 Producto::Producto()
 {
 	_id = -1;
-	_cantidad = 0;
 	_precioVenta = 0.0;
 	_precioCompra = 0.0;
 	strcpy_s(_nombre, "");
 	strcpy_s(_descripcion, "");
-	_cliente = Cliente();
-	_proveedor = Proveedor();
 	_fecha = Fecha(0, 0, 0);
 	_estado = true;
 }
@@ -17,9 +14,7 @@ Producto::Producto()
 Producto::Producto(int id, 
 	const char* nombre, 
 	int precioVenta, 
-	int precioCompra,
-	Cliente cliente,
-	Proveedor proveedor)
+	int precioCompra)
 {
 	
 	SetId(id);
@@ -27,8 +22,6 @@ Producto::Producto(int id,
 	SetPrecioVenta(precioVenta);
 	SetPrecioCompra(precioCompra);
 
-	_cliente = cliente;
-	_proveedor = proveedor;
 	_fecha.FechaActual();
 	_estado = true;
 }
@@ -36,7 +29,6 @@ Producto::Producto(int id,
 void Producto::CargarProducto()
 {
 	float precioVenta, precioCompra;
-	int cant;
 	char nombre[40], desc[100];
 
 	cin.ignore();
@@ -48,11 +40,9 @@ void Producto::CargarProducto()
 	cin >> precioVenta;
 	cout << endl << "PRECIO DE COMPRA: ";
 	cin >> precioCompra;
-	cout << endl << "CANTIDAD: ";
-	cin >> cant;
 
 	SetFecha();
-	SetCantidad(cant);
+	SetNombre(nombre);
 	SetDescripcion(desc);
 	SetPrecioVenta(precioVenta);
 	SetPrecioCompra(precioCompra);
@@ -64,7 +54,7 @@ void Producto::MostrarProducto()
 	{
 		cout << setw(5) << GetId();
 		cout << setw(15) << GetNombre();
-		cout << setw(20) << GetDescripcion();
+		cout << setw(45) << GetDescripcion();
 		cout << setw(20) << GetPrecioVenta();
 		cout << setw(35) << GetPrecioCompra();
 		cout << setw(55) << GetFecha().toString() << endl;
@@ -88,9 +78,8 @@ void Producto::MostrarProducto2()
 void Producto::SetId(int id){_id = id;}
 void Producto::SetNombre(const char* nombre){strcpy_s(_nombre, nombre);}
 void Producto::SetDescripcion(const char* desc){strcpy_s(_descripcion, desc);}
-void Producto::SetCantidad(int cantidad){_cantidad = cantidad;}
-void Producto::SetCliente(Cliente cliente) {_cliente = cliente;}
-void Producto::SetProveedor(Proveedor proveedor){_proveedor = proveedor;}
+
+
 void Producto::SetFecha(){_fecha.FechaActual();}
 void Producto::SetEstado(bool estado){_estado = estado;}
 void Producto::SetPrecioVenta(float precioVenta) { _precioVenta = precioVenta; }
@@ -99,10 +88,7 @@ void Producto::SetPrecioCompra(float precioCompra) { _precioCompra = precioCompr
 int Producto::GetId() const {return _id;}
 char* Producto::GetNombre() {return _nombre;}
 char* Producto::GetDescripcion(){return _descripcion;}
-int Producto::GetCantidad() const{return _cantidad;}
 
-Cliente Producto::GetCliente() const {return _cliente;}
-Proveedor Producto::GetProveedor() const{return _proveedor;}
 Fecha Producto::GetFecha() const{return _fecha;}
 bool Producto::GetEstado() const{return _estado;}
 float Producto::GetPrecioVenta() const{return _precioVenta;}

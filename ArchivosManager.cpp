@@ -535,6 +535,7 @@ bool ArchivosManager::BajaProducto(int id)
     {
         return false;
     }
+
     int pos = BuscarProductoXID(id, p);
     fclose(p);
 
@@ -621,7 +622,7 @@ int ArchivosManager::BuscarProductoXNombre(const char* nombre) const
 
     while (fread(&reg, sizeof(Producto), 1, p) == 1)
     {
-        if (!strcmp(reg.GetNombre(),nombre))
+        if (strcmp(reg.GetNombre(),nombre)==0)
         {
             return pos;
         }

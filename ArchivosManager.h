@@ -61,9 +61,6 @@ public:
 	int BuscarPosicion(Producto reg);
 	Producto BuscarProducto(int n) const;
 
-
-	
-
 private:
 	char _nombreArchivo[30];
 };
