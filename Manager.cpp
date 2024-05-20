@@ -500,7 +500,6 @@ void Manager::BuscarProductoXID()
         system("pause");
     }
 }
-
 void Manager::BuscarProductoXNombre()
 {
     Producto producto;
@@ -525,4 +524,5 @@ void Manager::BuscarProductoXNombre()
         system("pause");
     }
 }
+
 

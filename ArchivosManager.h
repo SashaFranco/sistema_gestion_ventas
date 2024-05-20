@@ -66,10 +66,11 @@ public:
 	int ObtenerUltimoIdStock() const;
 	bool AltaStock(Stock reg);
 	bool ListarStock(Stock reg) const;
+	bool ModificarStock(Stock reg, int pos);
 	int BuscarPosicionStock(Stock reg);
 	int BuscarStockXID(int id, FILE* p) const;
-	Stock BuscarStockFecha(Fecha fecha) const;
-	Stock BuscarStock(int n) const;
+	/*Stock BuscarStockFecha(Fecha fecha) const;
+	Stock BuscarStock(int n) const;*/
 
 private:
 	char _nombreArchivo[30];

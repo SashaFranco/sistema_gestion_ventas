@@ -697,7 +697,7 @@ int ArchivosManager::ObtenerUltimoIdStock() const
 }
 bool ArchivosManager::AltaStock(Stock reg)
 {
-    reg.SetId(ObtenerUltimoIdProducto() + 1);
+    reg.SetId(ObtenerUltimoIdStock() + 1);
     FILE* p = fopen(_nombreArchivo, "ab");
     if (p == nullptr) return false;
 
@@ -721,6 +721,11 @@ bool ArchivosManager::ListarStock(Stock reg) const
     return true;
 }
 
+bool ArchivosManager::ModificarStock(Stock reg, int pos)
+{
+    return false;
+}
+
 int ArchivosManager::BuscarPosicionStock(Stock reg)
 {
     return 0;
@@ -731,15 +736,17 @@ int ArchivosManager::BuscarStockXID(int id, FILE* p) const
     return 0;
 }
 
-Stock ArchivosManager::BuscarStockFecha(Fecha fecha) const
-{
-    return Stock();
-}
 
-Stock ArchivosManager::BuscarStock(int n) const
-{
-    return Stock();
-}
+
+//Stock ArchivosManager::BuscarStockFecha(Fecha fecha) const
+//{
+//    return Stock();
+//}
+//
+//Stock ArchivosManager::BuscarStock(int n) const
+//{
+//    return Stock();
+//}
 
 
 

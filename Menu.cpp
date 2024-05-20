@@ -11,7 +11,7 @@ void Menu::MostrarEntrada()
         cout << "***********************" << endl;
         cout << "** " << _fechaSitema.toString() << " - " << _fechaSitema.getNombreDia() << " **" << endl;
         cout << "***********************" << endl << endl;
-        cout << setw(40) << "SISTEMA DE GESTION PARA LA VENTA DE HERRAJES" << endl;
+        cout << setw(40) << "SISTEMA DE GESTION PARA LA VENTA DE ALMACEN" << endl;
         cout << setw(40) << "--------------------------------------------" << endl;
         cout << setw(40) << "-----------------BIENVENDIO-----------------" << endl;
         cout << setw(40) << "--------------------------------------------" << endl;
@@ -26,6 +26,7 @@ void Menu::MostrarEntrada()
         switch (opcion)
         {
         case 1:
+            
             /*if (_manager.entradaAlSistema())
             {
                 mostrar();
@@ -57,7 +58,7 @@ void Menu::mostrar()
         cout << "***********************" << endl;
         cout << "** " << _fechaSitema.toString() << " - " << _fechaSitema.getNombreDia() << " **" << endl;
         cout << "***********************" << endl << endl;
-        cout << setw(40) << "SISTEMA DE GESTION PARA LA VENTA DE HERRAJES" << endl;
+        cout << setw(40) << "SISTEMA DE GESTION PARA LA VENTA DE ALMACEN" << endl;
         cout << setw(40) << "--------------------------------------------" << endl;
         cout << setw(40) << "--------BIENVENDIO AL MENU PRINCIPAL--------" << endl;
         cout << setw(40) << "--------------------------------------------" << endl;
@@ -110,7 +111,7 @@ void Menu::mostrarCompras()
         system("cls");
         int opc;
         cout << left;
-        cout << setw(40) << "SISTEMA DE GESTION PARA LA VENTA DE HERRAJES" << endl;
+        cout << setw(40) << "SISTEMA DE GESTION PARA LA VENTA DE ALMACEN" << endl;
         cout << setw(40) << "--------------------------------------------" << endl;
         cout << setw(40) << "---------------MENU DE COMPRAS--------------" << endl;
         cout << setw(40) << "--------------------------------------------" << endl;
@@ -153,7 +154,7 @@ void Menu::mostrarVentas()
         system("cls");
         int opc;
         cout << left;
-        cout << setw(40) << "SISTEMA DE GESTION PARA LA VENTA DE HERRAJES" << endl;
+        cout << setw(40) << "SISTEMA DE GESTION PARA LA VENTA DE ALMACEN" << endl;
         cout << setw(40) << "--------------------------------------------" << endl;
         cout << setw(40) << "---------------MENU DE VENTAS---------------" << endl;
         cout << setw(40) << "--------------------------------------------" << endl;
@@ -190,7 +191,7 @@ void Menu::mostrarABM()
         system("cls");
         int opc;
         cout << left;
-        cout << setw(40) << "SISTEMA DE GESTION PARA LA VENTA DE HERRAJES" << endl;
+        cout << setw(40) << "SISTEMA DE GESTION PARA LA VENTA DE ALMACEN" << endl;
         cout << setw(40) << "--------------------------------------------" << endl;
         cout << setw(40) << "----------------MENU PARA ABM---------------" << endl;
         cout << setw(40) << "--------------------------------------------" << endl;
@@ -232,7 +233,7 @@ void Menu::mostrarRreportes()
         system("cls");
         int opc;
         cout << left;
-        cout << setw(40) << "SISTEMA DE GESTION PARA LA VENTA DE HERRAJES" << endl;
+        cout << setw(40) << "SISTEMA DE GESTION PARA LA VENTA DE ALMACEN" << endl;
         cout << setw(40) << "--------------------------------------------" << endl;
         cout << setw(40) << "----------------MENU REPORTES---------------" << endl;
         cout << setw(40) << "--------------------------------------------" << endl;
@@ -242,7 +243,7 @@ void Menu::mostrarRreportes()
         cout << setw(40) << "3. LISTAR PRODUCTOS" << endl;
         cout << setw(40) << "4. LISTADO DE VENTAS" << endl;
         cout << setw(40) << "5. EMITIR REPORTE DE CAJA" << endl;
-        cout << setw(40) << "6. EXPORTAR REPORTES A XLS" << endl; // REVISAR COMO HACER
+        cout << setw(40) << "6. EXPORTAR REPORTES A CSV" << endl; // REVISAR COMO HACER
         cout << setw(40) << "--------------------------------------------" << endl;
         cout << setw(40) << "0. VOLVER AL MENU PRINCIPAL" << endl;
         setConsoleSize(45, 45);
@@ -283,7 +284,7 @@ void Menu::mostrarUsuarios()
         system("cls");
         int opc;
         cout << left;
-        cout << setw(40) << "SISTEMA DE GESTION PARA LA VENTA DE HERRAJES" << endl;
+        cout << setw(40) << "SISTEMA DE GESTION PARA LA VENTA DE ALMACEN" << endl;
         cout << setw(40) << "--------------------------------------------" << endl;
         cout << setw(40) << "----------------MENU USUARIOS---------------" << endl;
         cout << setw(40) << "--------------------------------------------" << endl;
@@ -329,7 +330,7 @@ void Menu::mostrarBk()
         system("cls");
         int opc;
         cout << left;
-        cout << setw(40) << "SISTEMA DE GESTION PARA LA VENTA DE HERRAJES" << endl;
+        cout << setw(40) << "SISTEMA DE GESTION PARA LA VENTA DE HALMACEN" << endl;
         cout << setw(40) << "--------------------------------------------" << endl;
         cout << setw(40) << "-----------------MENU BUCKUP----------------" << endl;
         cout << setw(40) << "--------------------------------------------" << endl;
@@ -370,7 +371,7 @@ void Menu::mostrarABMCLientes()
         system("cls");
         int opc;
         cout << left;
-        cout << setw(40) << "SISTEMA DE GESTION PARA LA VENTA DE HERRAJES" << endl;
+        cout << setw(40) << "SISTEMA DE GESTION PARA LA VENTA DE ALMACEN" << endl;
         cout << setw(40) << "--------------------------------------------" << endl;
         cout << setw(40) << "--------------MENU ABM CLIENTES-------------" << endl;
         cout << setw(40) << "--------------------------------------------" << endl;
@@ -421,7 +422,7 @@ void Menu::mostrarABMProveedores()
         system("cls");
         int opc;
         cout << left;
-        cout << setw(40) << "SISTEMA DE GESTION PARA LA VENTA DE HERRAJES" << endl;
+        cout << setw(40) << "SISTEMA DE GESTION PARA LA VENTA DE ALMACEN" << endl;
         cout << setw(40) << "--------------------------------------------" << endl;
         cout << setw(40) << "------------MENU ABM PROVEEDORES------------" << endl;
         cout << setw(40) << "--------------------------------------------" << endl;
@@ -471,7 +472,7 @@ void Menu::mostrarABMProductos()
         system("cls");
         int opc;
         cout << left;
-        cout << setw(40) << "SISTEMA DE GESTION PARA LA VENTA DE HERRAJES" << endl;
+        cout << setw(40) << "SISTEMA DE GESTION PARA LA VENTA DE ALMACEN" << endl;
         cout << setw(40) << "--------------------------------------------" << endl;
         cout << setw(40) << "------------MENU ABM PRODUCTOS------------" << endl;
         cout << setw(40) << "--------------------------------------------" << endl;

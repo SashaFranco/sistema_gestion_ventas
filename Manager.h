@@ -10,6 +10,7 @@
 #include "Cliente.h"
 #include "Proveedor.h"
 #include "Producto.h"
+#include "Stock.h"
 #include "Helpers.h"
 
 class Manager
@@ -52,5 +53,12 @@ private:
 	// INSTANCIAS PARA GESTIONAR PRODUCTOS
 	ArchivosManager _regProductos = ArchivosManager("Productos.dat");
 	Producto _producto;
+
+	// INSTANCIAS PARA GESTIONAR STOCK
+	ArchivosManager _regStock = ArchivosManager("Stock.dat");
+	Stock _stock;
+
+
+
 };
 
