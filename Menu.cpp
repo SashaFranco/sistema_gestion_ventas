@@ -474,7 +474,7 @@ void Menu::mostrarABMProductos()
         cout << left;
         cout << setw(40) << "SISTEMA DE GESTION PARA LA VENTA DE ALMACEN" << endl;
         cout << setw(40) << "--------------------------------------------" << endl;
-        cout << setw(40) << "------------MENU ABM PRODUCTOS------------" << endl;
+        cout << setw(40) << "------------MENU ABM PRODUCTOS--------------" << endl;
         cout << setw(40) << "--------------------------------------------" << endl;
         // Opciones del menú de ABM
         cout << setw(40) << "1. ALTA DE PRODUCTO NUEVO" << endl;
